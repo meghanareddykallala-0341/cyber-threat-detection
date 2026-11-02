@@ -1,0 +1,166 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberShield - Threat Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/">CyberShield</a>
+      <ul class="navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Welcome to CyberShield</h1>
+      <p class="subtitle">
+        A prototype framework for analysing phishing URLs and Windows executable files.
+      </p>
+
+      <section class="analysis-panel">
+        <h2>Phishing URL Detection</h2>
+        <p>Enter a URL to check for suspicious patterns.</p>
+
+        <form method="POST" action="{{ url_for('main.analyze_url_route') }}"
+              class="url-analyze-form">
+          <input
+            type="text"
+            name="url"
+            placeholder="Example: https://example.com"
+            value="{{ input_url|default('', true) }}"
+            required
+            class="url-input"
+            aria-label="URL to analyze">
+          <button type="submit" class="btn btn-primary">Analyze URL</button>
+        </form>
+
+        {% if analysis is defined and analysis %}
+          <div class="analysis-result" aria-live="polite">
+            <h3>Phishing Analysis Result</h3>
+            <p>
+              <strong>Risk Level:</strong>
+              <span class="risk-{{ analysis.risk|lower }}">
+                {{ analysis.risk }}
+              </span>
+            </p>
+            <ul>
+              {% for reason in analysis.reasons %}
+                <li>{{ reason }}</li>
+              {% endfor %}
+            </ul>
+            <p class="disclaimer">
+              A prediction is not a guarantee that a URL is safe or malicious.
+            </p>
+          </div>
+        {% endif %}
+      </section>
+
+      <section class="analysis-panel">
+        <h2>Malware File Analysis</h2>
+        <p>
+          Upload a file to inspect basic Windows executable structure,
+          calculate its SHA-256 hash, and check simple warning indicators.
+        </p>
+
+        <form method="POST"
+              action="{{ url_for('main.analyze_file_route') }}"
+              enctype="multipart/form-data">
+          <label for="file">Choose a file (maximum 100 MB)</label>
+          <input
+            id="file"
+            type="file"
+            name="file"
+            required>
+          <button type="submit" class="btn btn-primary">
+            Analyse File
+          </button>
+        </form>
+
+        {% if malware_analysis is defined and malware_analysis %}
+          <div class="analysis-result" aria-live="polite">
+            <h3>File Analysis Result</h3>
+            <p>
+              <strong>Status:</strong>
+              <span>{{ malware_analysis.status }}</span>
+            </p>
+            <p>{{ malware_analysis.message }}</p>
+
+            {% if malware_analysis.details %}
+              <h4>Details</h4>
+              <ul>
+                {% for detail in malware_analysis.details %}
+                  <li>{{ detail }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+
+            <p class="disclaimer">
+              This prototype does not execute uploaded files. Its static
+              checks cannot confirm that a file is safe or definitively
+              identify malware.
+            </p>
+          </div>
+        {% endif %}
+      </section>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <div class="container">
+      <h2>CyberShield Features</h2>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <img src="{{ url_for('static', filename='img/phishing.png') }}"
+               alt="Phishing detection">
+          <h3>Phishing Detection</h3>
+          <p>Analyse URL characteristics using a machine-learning prototype.</p>
+        </div>
+
+        <div class="feature-card">
+          <img src="{{ url_for('static', filename='img/malware.png') }}"
+               alt="Malware file analysis">
+          <h3>Malware File Analysis</h3>
+          <p>Inspect supported Windows executable metadata without running the file.</p>
+        </div>
+
+        <div class="feature-card">
+          <img src="{{ url_for('static', filename='img/ransomware.png') }}"
+               alt="Ransomware detection">
+          <h3>Ransomware Detection</h3>
+          <p>Planned module for future development and testing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About CyberShield</h2>
+      <p>
+        CyberShield is a college project exploring ways to identify potential
+        cyber threats. Its current modules are prototypes and should not be
+        used as the sole basis for security decisions.
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>College Project &middot; Python &amp; Flask</p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
