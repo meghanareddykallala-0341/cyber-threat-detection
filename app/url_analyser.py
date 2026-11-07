@@ -126,25 +126,25 @@ def analyze_url(url):
             "This is not a guarantee of safety."
         ),
     ]
+    risk_score = 0
 
-    # Start with the model's result.
-    risk = "High" if prediction == 1 else "Low"
+    if prediction == 1:
+        risk_score += 3
 
-    # Warning signs increase the displayed risk but do not prove phishing.
     if parsed.scheme.lower() != "https":
-        risk = "High"
+        risk_score += 1
         reasons.append("The URL uses HTTP rather than HTTPS.")
 
     if "@" in url:
-        risk = "High"
+        risk_score += 2
         reasons.append("The URL contains an @ symbol.")
 
     try:
         ipaddress.ip_address(hostname)
-        risk = "High"
+        risk_score += 2
         reasons.append(
             "The hostname is an IP address rather than a domain name."
-        )
+       )
     except ValueError:
         pass
 
@@ -153,13 +153,21 @@ def analyze_url(url):
     ]
 
     if suspicious_found:
-        risk = "High"
+        risk_score += min(len(suspicious_found), 2)
         reasons.append(
             "Potentially suspicious words found: "
             + ", ".join(suspicious_found)
             + ". These words alone do not prove phishing."
         )
 
+# Assign the overall risk level.
+    if risk_score >= 3:
+        risk = "High"
+    elif risk_score >= 1:
+        risk = "Medium"
+    else:
+        risk = "Low"
+        
     if prediction == 1:
         reasons.append(
             "The model detected patterns associated with phishing URLs."

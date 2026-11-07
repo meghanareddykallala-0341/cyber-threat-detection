@@ -1,55 +1,210 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CyberShield - Threat Detection</title>
+  <meta name="theme-color" content="#080d18">
+  <title>CyberShield | AI Threat Detection</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container">
-      <a class="navbar-brand" href="/">CyberShield</a>
-      <ul class="navbar-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
+
+<div class="dashboard">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a class="brand" href="/">
+      <span class="brand-icon">⌘</span>
+      <span>Cyber<span>Shield</span></span>
+    </a>
+
+    <div class="sidebar-label">WORKSPACE</div>
+
+    <nav class="side-nav">
+      <a class="side-link active" href="#dashboard">
+        <span class="nav-icon">▦</span> Dashboard
+      </a>
+      <a class="side-link" href="#phishing">
+        <span class="nav-icon">◎</span> Phishing Detection
+      </a>
+      <a class="side-link" href="#malware">
+        <span class="nav-icon">⬡</span> Malware Analysis
+      </a>
+      <a class="side-link" href="#ransomware">
+        <span class="nav-icon">◈</span> Ransomware Detection
+      </a>
+    </nav>
+
+    <div class="sidebar-label secondary-label">INFORMATION</div>
+
+    <nav class="side-nav">
+      <a class="side-link" href="#features">
+        <span class="nav-icon">✧</span> Features
+      </a>
+      <a class="side-link" href="#about">
+        <span class="nav-icon">ⓘ</span> About Project
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-status">
+        <span class="status-dot"></span>
+        <div>
+          <strong>Prototype Mode</strong>
+          <small>Local analysis environment</small>
+        </div>
+      </div>
+      <p>CyberShield © 2026</p>
     </div>
-  </nav>
+  </aside>
 
-  <section class="hero">
-    <div class="container">
-      <h1>Welcome to CyberShield</h1>
-      <p class="subtitle">
-        A prototype framework for analysing phishing URLs and Windows executable files.
-      </p>
+  <!-- MAIN CONTENT -->
+  <main class="main-content" id="dashboard">
 
-      <section class="analysis-panel">
-        <h2>Phishing URL Detection</h2>
-        <p>Enter a URL to check for suspicious patterns.</p>
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div>
+        <p class="breadcrumb">Workspace / <span>Dashboard</span></p>
+      </div>
+      <div class="topbar-right">
+        <span class="environment-tag">
+          <span class="status-dot"></span>
+          SYSTEM READY
+        </span>
+        <div class="profile-icon">CS</div>
+      </div>
+    </header>
 
-        <form method="POST" action="{{ url_for('main.analyze_url_route') }}"
+    <!-- HERO -->
+    <section class="welcome-section">
+      <div class="welcome-content">
+        <span class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          AI-POWERED THREAT ANALYSIS
+        </span>
+
+        <h1>Security starts with<br>
+          <span>intelligent detection.</span>
+        </h1>
+
+        <p>
+          Analyse suspicious URLs, inspect Windows executable files,
+          and identify potential ransomware activity from event data.
+          All in one security workspace.
+        </p>
+
+        <a href="#phishing" class="hero-button">
+          Start analysing <span>→</span>
+        </a>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="orbit orbit-three"></div>
+        <div class="shield-glow"></div>
+        <div class="shield-symbol">⬡</div>
+        <div class="hero-art-caption">
+          <span class="status-dot"></span>
+          THREAT ANALYSIS FRAMEWORK
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="overview-section">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">OVERVIEW</span>
+          <h2>Your security workspace</h2>
+          <p>Three integrated modules for analysing potential cyber threats.</p>
+        </div>
+        <span class="module-count">03 MODULES</span>
+      </div>
+
+      <div class="overview-grid">
+        <a href="#phishing" class="overview-card overview-blue">
+          <div class="overview-card-top">
+            <span class="overview-icon">◎</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <strong>01</strong>
+          <h3>Phishing Detection</h3>
+          <p>Inspect URL characteristics and identify suspicious indicators.</p>
+          <span class="card-footer">URL ANALYSIS <span>→</span></span>
+        </a>
+
+        <a href="#malware" class="overview-card overview-purple">
+          <div class="overview-card-top">
+            <span class="overview-icon">⬡</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <strong>02</strong>
+          <h3>Malware Analysis</h3>
+          <p>Examine Windows executable metadata and model predictions.</p>
+          <span class="card-footer">FILE ANALYSIS <span>→</span></span>
+        </a>
+
+        <a href="#ransomware" class="overview-card overview-red">
+          <div class="overview-card-top">
+            <span class="overview-icon">◈</span>
+            <span class="card-arrow">↗</span>
+          </div>
+          <strong>03</strong>
+          <h3>Ransomware Detection</h3>
+          <p>Analyse numerical Sysmon event features from SILRAD CSV data.</p>
+          <span class="card-footer">EVENT ANALYSIS <span>→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- PHISHING -->
+    <section class="module-section" id="phishing">
+      <div class="module-heading">
+        <div class="module-title-group">
+          <div class="module-icon icon-blue">◎</div>
+          <div>
+            <span class="section-kicker">MODULE 01</span>
+            <h2>Phishing URL Detection</h2>
+            <p>Check a URL for potentially suspicious characteristics.</p>
+          </div>
+        </div>
+        <span class="module-type">URL SCANNER</span>
+      </div>
+
+      <div class="analysis-panel phishing-panel">
+        <div class="panel-intro">
+          <h3>Analyse a website URL</h3>
+          <p>Enter the complete URL you want to inspect.</p>
+        </div>
+
+        <form method="POST"
+              action="{{ url_for('main.analyze_url_route') }}"
               class="url-analyze-form">
-          <input
-            type="text"
-            name="url"
-            placeholder="Example: https://example.com"
-            value="{{ input_url|default('', true) }}"
-            required
-            class="url-input"
-            aria-label="URL to analyze">
-          <button type="submit" class="btn btn-primary">Analyze URL</button>
+          <div class="input-wrapper">
+            <span class="input-symbol">↗</span>
+            <input
+              type="text"
+              name="url"
+              placeholder="https://example.com"
+              value="{{ input_url|default('', true) }}"
+              required
+              class="url-input"
+              aria-label="URL to analyze">
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Analyse URL <span>→</span>
+          </button>
         </form>
 
         {% if analysis is defined and analysis %}
           <div class="analysis-result" aria-live="polite">
+            <span class="result-label">SCAN RESULT</span>
             <h3>Phishing Analysis Result</h3>
             <p>
-              <strong>Risk Level:</strong>
+              <strong>Overall Risk:</strong>
               <span class="risk-{{ analysis.risk|lower }}">
                 {{ analysis.risk }}
               </span>
@@ -64,31 +219,48 @@
             </p>
           </div>
         {% endif %}
-      </section>
+      </div>
+    </section>
 
-      <section class="analysis-panel">
-        <h2>Malware File Analysis</h2>
-        <p>
-          Upload a file to inspect basic Windows executable structure,
-          calculate its SHA-256 hash, and check simple warning indicators.
-        </p>
+    <!-- MALWARE -->
+    <section class="module-section" id="malware">
+      <div class="module-heading">
+        <div class="module-title-group">
+          <div class="module-icon icon-purple">⬡</div>
+          <div>
+            <span class="section-kicker">MODULE 02</span>
+            <h2>Malware File Analysis</h2>
+            <p>Inspect supported Windows executable files without running them.</p>
+          </div>
+        </div>
+        <span class="module-type">FILE SCANNER</span>
+      </div>
+
+      <div class="analysis-panel malware-panel">
+        <div class="panel-intro">
+          <h3>Upload a file for inspection</h3>
+          <p>Review executable structure, SHA-256 hash, entropy, and model predictions.</p>
+        </div>
 
         <form method="POST"
               action="{{ url_for('main.analyze_file_route') }}"
               enctype="multipart/form-data">
-          <label for="file">Choose a file (maximum 100 MB)</label>
-          <input
-            id="file"
-            type="file"
-            name="file"
-            required>
+          <label for="file" class="upload-area">
+            <span class="upload-icon">⇧</span>
+            <strong>Choose an executable file</strong>
+            <span>Browse your computer to select a file</span>
+            <small>Maximum upload size: 100 MB</small>
+            <input id="file" type="file" name="file" required>
+          </label>
+
           <button type="submit" class="btn btn-primary">
-            Analyse File
+            Analyse File <span>→</span>
           </button>
         </form>
 
         {% if malware_analysis is defined and malware_analysis %}
           <div class="analysis-result" aria-live="polite">
+            <span class="result-label">SCAN RESULT</span>
             <h3>File Analysis Result</h3>
             <p>
               <strong>Status:</strong>
@@ -97,7 +269,7 @@
             <p>{{ malware_analysis.message }}</p>
 
             {% if malware_analysis.details %}
-              <h4>Details</h4>
+              <h4>Analysis Details</h4>
               <ul>
                 {% for detail in malware_analysis.details %}
                   <li>{{ detail }}</li>
@@ -105,62 +277,236 @@
               </ul>
             {% endif %}
 
+            {% if malware_analysis.report_filename %}
+              <a
+                href="{{ url_for(
+                  'main.download_malware_report',
+                  filename=malware_analysis.report_filename
+                ) }}"
+                class="btn btn-download">
+                Download Malware Report <span>↓</span>
+              </a>
+            {% endif %}
+
             <p class="disclaimer">
-              This prototype does not execute uploaded files. Its static
-              checks cannot confirm that a file is safe or definitively
-              identify malware.
+              This prototype does not execute uploaded files. Static analysis
+              cannot guarantee that a file is safe or definitively identify malware.
             </p>
           </div>
         {% endif %}
-      </section>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section id="features" class="features">
-    <div class="container">
-      <h2>CyberShield Features</h2>
-      <div class="feature-cards">
-        <div class="feature-card">
-          <img src="{{ url_for('static', filename='img/phishing.png') }}"
-               alt="Phishing detection">
-          <h3>Phishing Detection</h3>
-          <p>Analyse URL characteristics using a machine-learning prototype.</p>
+    <!-- RANSOMWARE -->
+    <section class="module-section" id="ransomware">
+      <div class="module-heading">
+        <div class="module-title-group">
+          <div class="module-icon icon-red">◈</div>
+          <div>
+            <span class="section-kicker">MODULE 03</span>
+            <h2>Ransomware Detection</h2>
+            <p>Analyse numerical Sysmon event features using the SILRAD dataset format.</p>
+          </div>
+        </div>
+        <span class="module-type">EVENT SCANNER</span>
+      </div>
+
+      <div class="analysis-panel ransomware-panel">
+        <div class="panel-intro">
+          <h3>Upload event data</h3>
+          <p>Select a SILRAD-format CSV file containing numerical event features.</p>
         </div>
 
-        <div class="feature-card">
-          <img src="{{ url_for('static', filename='img/malware.png') }}"
-               alt="Malware file analysis">
-          <h3>Malware File Analysis</h3>
-          <p>Inspect supported Windows executable metadata without running the file.</p>
-        </div>
+        <form method="POST"
+              action="{{ url_for('main.analyze_ransomware_route') }}"
+              enctype="multipart/form-data">
+          <label for="ransomware_file" class="upload-area ransomware-upload">
+            <span class="upload-icon">▤</span>
+            <strong>Select a CSV dataset</strong>
+            <span>Upload numerical Sysmon event features</span>
+            <small>CSV format · Maximum upload size: 100 MB</small>
+            <input
+              id="ransomware_file"
+              type="file"
+              name="ransomware_file"
+              accept=".csv"
+              required>
+          </label>
 
-        <div class="feature-card">
-          <img src="{{ url_for('static', filename='img/ransomware.png') }}"
-               alt="Ransomware detection">
-          <h3>Ransomware Detection</h3>
-          <p>Planned module for future development and testing.</p>
+          <button type="submit" class="btn btn-primary">
+            Analyse Ransomware <span>→</span>
+          </button>
+        </form>
+
+        {% if ransomware_analysis is defined and ransomware_analysis %}
+          <div class="analysis-result ransomware-result" aria-live="polite">
+            <span class="result-label">SCAN RESULT</span>
+            <h3>Ransomware Analysis Result</h3>
+
+            <p><strong>Status:</strong> {{ ransomware_analysis.status }}</p>
+            <p>{{ ransomware_analysis.message }}</p>
+
+            {% if ransomware_analysis.status == "Success" %}
+              {% set total = ransomware_analysis.total_records %}
+              {% set goodware = ransomware_analysis.goodware_count %}
+              {% set ransomware = ransomware_analysis.ransomware_count %}
+
+              {% if total > 0 %}
+                {% set goodware_percent = (goodware / total * 100) | round(2) %}
+                {% set ransomware_percent = (ransomware / total * 100) | round(2) %}
+
+                <h4>Analysis Summary</h4>
+
+                <div class="summary-grid">
+                  <div class="summary-card">
+                    <span>Total Events</span>
+                    <strong>{{ total }}</strong>
+                    <small>Records analysed</small>
+                  </div>
+
+                  <div class="summary-card goodware-card">
+                    <span>Goodware Events</span>
+                    <strong>{{ goodware }}</strong>
+                    <small>{{ goodware_percent }}% of records</small>
+                  </div>
+
+                  <div class="summary-card ransomware-card">
+                    <span>Ransomware Events</span>
+                    <strong>{{ ransomware }}</strong>
+                    <small>{{ ransomware_percent }}% of records</small>
+                  </div>
+                </div>
+
+                <h4>Classification Breakdown</h4>
+
+                <div class="breakdown-item">
+                  <div class="breakdown-heading">
+                    <span>Goodware</span>
+                    <strong>{{ goodware_percent }}%</strong>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill goodware-fill"
+                         style="width: {{ goodware_percent }}%;"></div>
+                  </div>
+                </div>
+
+                <div class="breakdown-item">
+                  <div class="breakdown-heading">
+                    <span>Ransomware</span>
+                    <strong>{{ ransomware_percent }}%</strong>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill ransomware-fill"
+                         style="width: {{ ransomware_percent }}%;"></div>
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if ransomware_analysis.sample_results %}
+                <h4>Top 5 Highest Ransomware Scores</h4>
+                <ul>
+                  {% for item in ransomware_analysis.sample_results %}
+                    <li>
+                      Record {{ item.record }}:
+                      <strong>{{ item.prediction }}</strong>
+                      (Ransomware probability:
+                      {{ item.ransomware_probability }}%)
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+
+              {% if ransomware_analysis.details %}
+                <h4>Model Details</h4>
+                <ul>
+                  {% for detail in ransomware_analysis.details %}
+                    <li>{{ detail }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+
+              {% if ransomware_analysis.report_filename %}
+                <a
+                  href="{{ url_for(
+                    'main.download_ransomware_report',
+                    filename=ransomware_analysis.report_filename
+                  ) }}"
+                  class="btn btn-download">
+                  Download Full CSV Report <span>↓</span>
+                </a>
+              {% endif %}
+            {% endif %}
+
+            <p class="disclaimer">
+              Predictions are based on the trained SILRAD Random Forest model.
+              They are not a guarantee of actual ransomware activity.
+              This module analyses uploaded CSV data; it does not monitor a
+              computer continuously.
+            </p>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-section" id="features">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">CAPABILITIES</span>
+          <h2>Built for threat analysis</h2>
+          <p>Explore the three analysis capabilities in this prototype.</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="about" class="about">
-    <div class="container">
-      <h2>About CyberShield</h2>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="feature-icon icon-blue">◎</span>
+          <h3>URL Intelligence</h3>
+          <p>Extract URL characteristics and combine model predictions with rule-based warning indicators.</p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon icon-purple">⬡</span>
+          <h3>Executable Inspection</h3>
+          <p>Inspect PE metadata, calculate file hashes and entropy, and use an EMBER LightGBM classifier.</p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon icon-red">◈</span>
+          <h3>Event Classification</h3>
+          <p>Classify numerical SILRAD event features using a trained Random Forest model.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+      <span class="section-kicker">ABOUT THE PROJECT</span>
+      <h2>Understanding threats through intelligent analysis.</h2>
       <p>
-        CyberShield is a college project exploring ways to identify potential
-        cyber threats. Its current modules are prototypes and should not be
-        used as the sole basis for security decisions.
+        CyberShield is a final-year academic project exploring machine-learning
+        approaches to phishing URL analysis, malware file inspection, and
+        ransomware-related event classification. Its modules are prototypes
+        and should not be used as the sole basis for security decisions.
       </p>
-    </div>
-  </section>
+      <div class="tech-tags">
+        <span>Python</span>
+        <span>Flask</span>
+        <span>Machine Learning</span>
+        <span>LightGBM</span>
+        <span>Random Forest</span>
+      </div>
+    </section>
 
-  <footer class="footer">
-    <div class="container">
-      <p>College Project &middot; Python &amp; Flask</p>
-    </div>
-  </footer>
+    <footer class="footer">
+      <span>CyberShield</span>
+      <p>Academic Project · Python & Flask · 2026</p>
+      <p>Prototype for educational and research purposes.</p>
+    </footer>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </main>
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

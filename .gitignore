@@ -1,5 +1,17 @@
+# Python environment
+.venv/
 venv/
 __pycache__/
 *.pyc
-.DS_Store
+
+# Environment variables and system files
 .env
+.DS_Store
+
+# Large ransomware datasets
+datasets/SILRAD/
+datasets/SILRAD-dataset-SILRAD-1.0/
+datasets/SILRAD-dataset-SILRAD-1.0.zip
+
+# Generated reports
+reports/
